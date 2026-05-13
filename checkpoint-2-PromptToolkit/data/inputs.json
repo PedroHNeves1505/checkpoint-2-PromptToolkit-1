@@ -1,0 +1,68 @@
+{
+    "classificacao_urgencia": [
+    {
+        "input": "O sistema de faturamento inteiro caiu e estamos com uma fila de 50 clientes na loja física sem conseguir emitir nota fiscal. Socorro!",
+        "esperado": "ALTA"
+    },
+    {
+        "input": "Gostaria de saber se existe alguma previsão para a implementação do modo escuro na versão web do dashboard. Não é urgente, apenas curiosidade.",
+        "esperado": "BAIXA"
+    },
+    {
+        "input": "Não consigo anexar o PDF do contrato na plataforma. O prazo de assinatura vence hoje às 18h e o cliente está cobrando.",
+        "esperado": "ALTA"
+    },
+    {
+        "input": "O ícone da minha foto de perfil está um pouco desalinhado em relação ao nome de usuário. Poderiam ajustar isso em uma atualização futura?",
+        "esperado": "BAIXA"
+    },
+    {
+        "input": "Esqueci minha senha e o e-mail de recuperação não está chegando na minha caixa de entrada, já verifiquei o spam.",
+        "esperado": "MÉDIA"
+    }
+    ],
+    "extracao_dados_financeiros": [
+    {
+        "input": "Acabei de realizar a venda de 50 ações da VALE3 pelo preço unitário de 65.50.",
+        "esperado": {"ativo": "VALE3", "operacao": "venda", "valor": 65.50}
+    },
+    {
+        "input": "Favor registrar a compra de MXRF11 hoje cedo, foram 100 cotas a 10.45 cada.",
+        "esperado": {"ativo": "MXRF11", "operacao": "compra", "valor": 10.45}
+    },
+    {
+        "input": "Desfizeram-se de 200 unidades de PETR4 a 34.10 no pregão de ontem.",
+        "esperado": {"ativo": "PETR4", "operacao": "venda", "valor": 34.10}
+    },
+    {
+        "input": "Executei a ordem de compra para 5 ITUB4 custando 32.00 cada uma.",
+        "esperado": {"ativo": "ITUB4", "operacao": "compra", "valor": 32.00}
+    },
+    {
+        "input": "Liquidei minha posição em KNRI11 vendendo todas as 15 cotas por 160.00.",
+        "esperado": {"ativo": "KNRI11", "operacao": "venda", "valor": 160.00}
+    }
+    ],
+    "sumarizacao_erro_sistema": [
+    {
+        "input": "Fatal error: Uncaught Error: Call to a member function getPath() on null in /var/www/html/storage/db_connector.php:42",
+        "esperado": "O sistema falhou ao tentar conectar com o banco de dados interno."
+    },
+    {
+        "input": "Failed to load resource: the server responded with a status of 403 (Forbidden) - CSRF token mismatch at /api/v1/user/update",
+        "esperado": "O acesso foi negado por um erro de segurança ao tentar atualizar seus dados."
+    },
+    {
+        "input": "OutOfMemoryError: Java heap space. The process was terminated by the OS killer due to excessive memory consumption in the microservice-inventory.",
+        "esperado": "O serviço de estoque parou de funcionar porque ficou sem memória disponível."
+    },
+    {
+        "input": "Error: Could not find or load main class com.auth.Provider. Cause: java.lang.ClassNotFoundException: com.auth.Provider",
+        "esperado": "O sistema de autenticação não conseguiu carregar um componente essencial para funcionar."
+    },
+    {
+        "input": "NetworkError: DNS resolution failed for production-cluster-internal.local. Check VPN connectivity or VPC peering settings.",
+        "esperado": "O sistema não conseguiu localizar o servidor interno devido a um problema de rede."
+    }
+    ]
+}
