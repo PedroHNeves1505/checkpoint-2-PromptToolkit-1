@@ -1,0 +1,68 @@
+{
+    "classificacao_urgencia": [
+    {
+        "input": "O botão de 'Esqueci Senha' não está clicável na página inicial.",
+        "output": "ALTA"
+    },
+    {
+        "input": "Gostaria de sugerir que o fundo do relatório fosse azul claro em vez de branco.",
+        "output": "BAIXA"
+    },
+    {
+        "input": "Recebi um erro 404 ao tentar acessar o blog, mas o resto do site funciona.",
+        "output": "MÉDIA"
+    },
+    {
+        "input": "Preciso cancelar minha assinatura imediatamente para não ser cobrado amanhã.",
+        "output": "ALTA"
+    },
+    {
+        "input": "Como faço para exportar meus contatos para uma planilha de Excel?",
+        "output": "BAIXA"
+    }
+    ],
+    "extracao_dados_financeiros": [
+    {
+        "input": "Vendi 30 ações de VALE3 por 72.10 ontem à tarde.",
+        "output": "{\"ativo\": \"VALE3\", \"operacao\": \"venda\", \"valor\": 72.10}"
+    },
+    {
+        "input": "Comprei ontem 100 cotas de HGLG11 pagando R$ 165,00 em cada.",
+        "output": "{\"ativo\": \"HGLG11\", \"operacao\": \"compra\", \"valor\": 165.00}"
+    },
+    {
+        "input": "Adquiri 50 unidades de PETR4 a um preço de 38.50.",
+        "output": "{\"ativo\": \"PETR4\", \"operacao\": \"compra\", \"valor\": 38.50}"
+    },
+    {
+        "input": "Me desfiz de 10 cotas de KNRI11 por 158.00 cada uma.",
+        "output": "{\"ativo\": \"KNRI11\", \"operacao\": \"venda\", \"valor\": 158.00}"
+    },
+    {
+        "input": "Ordem executada: compra de 200 BBAS3 a 27.40.",
+        "output": "{\"ativo\": \"BBAS3\", \"operacao\": \"compra\", \"valor\": 27.40}"
+    }
+    ],
+    "sumarizacao_erro_sistema": [
+    {
+        "input": "TypeError: Cannot read property 'map' of undefined at TransactionHistory.render (main.js:154)",
+        "output": "O sistema falhou ao tentar exibir a lista do seu histórico de transações."
+    },
+    {
+        "input": "HTTP 504 Gateway Timeout: The upstream server failed to respond within the allotted time frame.",
+        "output": "O servidor está demorando muito para responder e a conexão expirou."
+    },
+    {
+        "input": "SQLiteException: database is locked (code 5): The database file is currently being written by another process.",
+        "output": "O sistema está ocupado salvando outras informações e não pôde completar sua ação agora."
+    },
+    {
+        "input": "AccessDeniedException: User 'guest' does not have permission 'write' on resource '/uploads/docs'.",
+        "output": "Você não tem permissão para salvar arquivos nesta pasta do sistema."
+    },
+    {
+        "input": "Invalid API Key: The provided authentication token has expired or is malformed.",
+        "output": "Sua chave de acesso não é mais válida e precisa ser atualizada."
+    }
+    ]
+}
