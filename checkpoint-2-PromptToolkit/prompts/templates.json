@@ -1,0 +1,11 @@
+{
+    "classificacao": {
+        "template": "### CONTEXTO\n{contexto}\n\n### TAREFA\n{instrucao}\n\n### FORMATO DE SAÍDA\n{formato_output}\n\n### ENTRADA DE DADOS\n{input_dados}\n\n### RESPOSTA:"
+    },
+    "extracao": {
+        "template": "### ATUAÇÃO\n{contexto}\n\n### OBJETIVO TÉCNICO\n{instrucao}\n\n### REQUISITOS DE FORMATAÇÃO\n{formato_output}\n\n### DADOS PARA PROCESSAMENTO\n{input_dados}\n\n### JSON FINAL:"
+    },
+    "sumarizacao": {
+        "template": "### PERFIL PROFISSIONAL\n{contexto}\n\n### INSTRUÇÃO DE RESUMO\n{instrucao}\n\n### LIMITE DE TEXTO\n{formato_output}\n\n### TEXTO ORIGINAL\n{input_dados}\n\n### RESULTADO:"
+    }
+}
