@@ -1,4 +1,4 @@
-tarefa = {
+tarefa_urgencia= {
     "nome": "classificacao_urgencia",
     "tipo": "classificacao",  #
     "instrucao": "Analise o ticket de suporte e classifique a urgência como BAIXA, MÉDIA ou ALTA.",
@@ -15,7 +15,7 @@ tarefa = {
     "persona": "analista_suporte_senior"
 }
 
-tarefa = {
+tarefa_financeira = {
     "nome": "extracao_dados_financeiros",
     "tipo": "extracao",  #
     "instrucao": "Extraia o ativo, a operação e o valor mencionado no texto.",
@@ -31,7 +31,7 @@ tarefa = {
     "persona": "assistente_financeiro"
 }
 
-tarefa = {
+tarefa_erro = {
     "nome": "sumarizacao_erro_sistema",
     "tipo": "sumarizacao",  #
     "instrucao": "Resuma o erro técnico em uma única frase explicativa para não-desenvolvedores.",
