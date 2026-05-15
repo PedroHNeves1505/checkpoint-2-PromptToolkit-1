@@ -1,14 +1,20 @@
 import json
+import os
 
 def montar_prompt(tipo_tarefa, persona_texto, instrucao, input_dados, formato_output):
     if not all([tipo_tarefa, persona_texto, instrucao, input_dados, formato_output]):
         raise ValueError("Todos os componentes do prompt devem ser preenchidos.")
 
+
+    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+    raiz_projeto = os.path.dirname(diretorio_atual)
+    caminho_templates = os.path.join(raiz_projeto, 'prompts', 'templates.json')
+
     try:
-        with open('prompts/templates.json', 'r', encoding='utf-8') as f:
+        with open(caminho_templates, 'r', encoding='utf-8') as f:
             templates = json.load(f)
     except FileNotFoundError:
-        raise FileNotFoundError("Arquivo templates.json não encontrado na pasta prompts/.")
+        raise FileNotFoundError(f"Arquivo templates.json não encontrado em: {caminho_templates}")
 
     template_data = templates.get(tipo_tarefa)
     if not template_data:
@@ -24,6 +30,7 @@ def montar_prompt(tipo_tarefa, persona_texto, instrucao, input_dados, formato_ou
     )
 
     return prompt_estruturado.strip()
+
 
 def adicionar_exemplos(prompt, exemplos):
     if not exemplos:
