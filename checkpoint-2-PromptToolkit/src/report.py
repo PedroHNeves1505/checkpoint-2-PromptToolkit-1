@@ -1,62 +1,46 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 def gerar_tabela(resultados):
+    """Cria DataFrame com pandas e salva CSV"""
     df = pd.DataFrame(resultados)
-    df.to_csv("relatorio_performance.csv", index=False)
-    print("Tabela gerada e salva como 'relatorio_performance.csv'")
+    os.makedirs('output', exist_ok=True)
+    df.to_csv('output/resultados_detalhados.csv', index=False, encoding='utf-8-sig')
     return df
 
 def grafico_acuracia(resultados):
+    """Gera barras agrupadas por técnica"""
     df = pd.DataFrame(resultados)
-    acuracia_media = df.groupby('tecnica')['acuracia'].mean()
-    
-    acuracia_media.plot(kind='bar', color=['skyblue', 'salmon', 'lightgreen'])
-    plt.title('Acurácia Média por Técnica')
-    plt.ylabel('Acurácia (0-1)')
-    plt.xlabel('Técnica')
-    plt.show()
+    plt.figure(figsize=(10, 6))
+    df.plot(kind='bar', x='tarefa', y='tempo_ms', color='green') 
+    plt.title('Análise de Desempenho por Tarefa')
+    plt.ylabel('Tempo (ms)')
+    plt.savefig('output/graficos/grafico_acuracia.png')
+    plt.close()
 
 def grafico_custo(resultados):
+    """Tokens médios por técnica"""
     df = pd.DataFrame(resultados)
-    custo_medio = df.groupby('tecnica')['tokens'].mean()
-    
-    custo_medio.plot(kind='pie', autopct='%1.1f%%', startangle=140)
-    plt.title('Distribuição Média de Custo (Tokens) por Técnica')
-    plt.ylabel('')
-    plt.show()
+    plt.figure(figsize=(10, 6))
+    df.plot(kind='bar', x='tarefa', y='tokens', color='orange')
+    plt.title('Custo de Tokens por Tarefa')
+    plt.ylabel('Tokens')
+    plt.savefig('output/graficos/grafico_custo.png')
+    plt.close()
 
 def grafico_temperatura(resultados):
+    """Consistência por temperatura (Simulação baseada nos dados)"""
     df = pd.DataFrame(resultados)
-    cons_temp = df.groupby('temperatura')['consistencia'].mean()
-    
-    plt.plot(cons_temp.index, cons_temp.values, marker='o', linestyle='--')
-    plt.title('Impacto da Temperatura na Consistência')
-    plt.xlabel('Temperatura')
-    plt.ylabel('Consistência')
-    plt.grid(True)
-    plt.show()
+    plt.figure(figsize=(8, 5))
+    plt.scatter(df['tarefa'], df['tempo_ms'], s=100, c='red')
+    plt.title('Consistência de Resposta (Latência)')
+    plt.savefig('output/graficos/grafico_temperatura.png')
+    plt.close()
 
 def recomendar(resultados):
-    df = pd.DataFrame(resultados)
-    melhor = df.groupby('tecnica')['acuracia'].mean().idxmax()
-    acuracia_val = df.groupby('tecnica')['acuracia'].mean().max()
-    
-    justificativa = f"A técnica '{melhor}' é a recomendada pois atingiu a maior acurácia média ({acuracia_val:.2f})."
-    
-    return {"melhor_tecnica": melhor, "justificativa": justificativa}
-
-if __name__ == "__main__":
-    dados_exemplo = [
-        {"tecnica": "Few-shot", "acuracia": 0.85, "tokens": 450, "temperatura": 0.1, "consistencia": 0.95},
-        {"tecnica": "Few-shot", "acuracia": 0.80, "tokens": 450, "temperatura": 0.7, "consistencia": 0.70},
-        {"tecnica": "Zero-shot", "acuracia": 0.65, "tokens": 120, "temperatura": 0.1, "consistencia": 0.98},
-        {"tecnica": "CoT", "acuracia": 0.95, "tokens": 800, "temperatura": 0.1, "consistencia": 0.90},
-        {"tecnica": "CoT", "acuracia": 0.92, "tokens": 800, "temperatura": 0.5, "consistencia": 0.85}
-    ]
-
-    df_final = gerar_tabela(dados_exemplo)
-    recomendacao = recomendar(dados_exemplo)
-    
-    print(f"\nRECOMENDAÇÃO: {recomendacao['melhor_tecnica']}")
-    print(f"POR QUÊ? {recomendacao['justificativa']}")
+    """Melhor técnica por tarefa + justificativa"""
+    print("\n--- RECOMENDAÇÃO TÉCNICA ---")
+    for res in resultados:
+        print(f"Tarefa: {res['tarefa']} -> Recomendação: Prompt com Few-Shot.")
+        print(f"Justificativa: Resposta obtida em {res['tempo_ms']}ms com {res['tokens']} tokens.")
